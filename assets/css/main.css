@@ -98,6 +98,13 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+.center {
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    width: 90%;
+}
 article,
 aside,
 details,

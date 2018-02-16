@@ -14,6 +14,36 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <script type="text/javascript">
+        function validate() {
+            if (document.myForm.Name.value == "") {
+                alert("Please provide your name!");
+                document.myForm.Name.focus();
+                return false;
+            }
+            if (document.myForm.EMail.value == "") {
+                alert("Please provide your Email!");
+                document.myForm.EMail.focus();
+                return false;
+                Javascript
+                355
+            }
+            if (document.myForm.Zip.value == "" ||
+                isNaN(document.myForm.Zip.value) ||
+                document.myForm.Zip.value.length != 5) {
+                alert("Please provide a zip in the format #####.");
+                document.myForm.Zip.focus();
+                return false;
+            }
+            if (document.myForm.Country.value == "-1") {
+                alert("Please provide your country!");
+                return false;
+            }
+            return (true);
+        }
+
+    </script>
+
 </head>
 
 <body class="no-sidebar">
@@ -45,16 +75,99 @@
                 <div class="log-form" style="text-align: center; width:30%;margin-left:auto;margin-right:auto;">
                     <h2 style="text-align: center">Sign Up</h2>
                     <p></p>
-                    <form>
+                    <form name="signUpForm" onsubmit="return(validate());">
+                        <p>First Name</p>
                         <input type="text" title="firstName" placeholder="First Name" />
+                        <p></p>
+
+                        <p>Last Name</p>
                         <input type="text" title="LastName" placeholder="Last Name" />
+                        <p></p>
+
+                        <p>Email</p>
                         <input type="text" title="email" placeholder="Email" />
+                        <p></p>
+
+                        <p>Password</p>
                         <input type="text" title="password" placeholder="Password" />
+                        <p></p>
+
+                        <p>Re-enter Password</p>
                         <input type="text" title="password" placeholder="Re-enter Password" />
+                        <p></p>
+
+                        <p>Street Address</p>
                         <input type="text" title="address" placeholder="Street Address" />
+                        <p></p>
+
+                        <p>City</p>
                         <input type="text" title="city" placeholder="City" />
-                        <input type="text" title="state" placeholder="State" />
+                        <p></p>
+
+                        <!--                        <input type="text" title="state" placeholder="State" />-->
+                        <p>State</p>
+                        <select name="Country">
+                            <option value="-1" selected>Select State...</option>
+                            <option value="1">Alabama</option>
+                            <option value="2">Alaska</option>
+                            <option value="3">Arizona</option>
+                            <option value="4">Arkansas</option>
+                            <option value="5">Arizona</option>
+                            <option value="6">Arizona</option>
+                            <option value="7">Arizona</option>
+                            <option value="8">Arizona</option>
+                            <option value="9">Arizona</option>
+                            <option value="10">Arizona</option>
+                            <option value="11">Arizona</option>
+                            <option value="12">Arizona</option>
+                            <option value="13">Arizona</option>
+                            <option value="14">Arizona</option>
+                            <option value="15">Arizona</option>
+                            <option value="16">Arizona</option>
+                            <option value="17">Arizona</option>
+                            <option value="18">Arizona</option>
+                            <option value="19">Arizona</option>
+                            <option value="20">Arizona</option>
+                            <option value="21">Arizona</option>
+                            <option value="22">Arizona</option>
+                            <option value="23">Arizona</option>
+                            <option value="24">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+                            <option value="3">Arizona</option>
+
+                        </select>
+                        <p></p>
+
+                        <!--                        	
+ ·  ·  ·  · California · Colorado · Connecticut · Delaware · Florida · Georgia · Hawaii · Idaho · Illinois · Indiana · Iowa · Kansas · Kentucky · Louisiana · Maine · Maryland · Massachusetts · Michigan · Minnesota · Mississippi · Missouri · Montana · Nebraska · Nevada · New Hampshire · New Jersey · New Mexico · New York · North Carolina · North Dakota · Ohio · Oklahoma · Oregon · Pennsylvania · Rhode Island · South Carolina · South Dakota · Tennessee · Texas · Utah · Vermont · Virginia · Washington · West Virginia · Wisconsin · Wyoming-->
+                        <p>Zip Code</p>
                         <input type="text" title="zip" placeholder="5-digit Zip Code" />
+                        <p></p>
                         <p></p>
                         <button type="submit" class="btn">Sign Up</button>
                     </form>
