@@ -15,32 +15,219 @@
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <script type="text/javascript">
+        function isAlphaNumeric(str) {
+            var code, i, len;
+
+            for (i = 0, len = str.length; i < len; i++) {
+                code = str.charCodeAt(i);
+                if (!(code > 47 && code < 58) && !(code > 64 && code < 91) && !(code > 96 && code < 123) && !(code === 32)) { //space
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function isAlpha(str) {
+            var code, i, len;
+
+            for (i = 0, len = str.length; i < len; i++) {
+                code = str.charCodeAt(i);
+                if (!(code > 64 && code < 91) && // upper alpha (A-Z)
+                    !(code > 96 && code < 123)) { // lower alpha (a-z)
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function isNum(str) {
+            var code, i, len;
+
+            for (i = 0, len = str.length; i < len; i++) {
+                code = str.charCodeAt(i);
+                if (!(code > 47 && code < 58)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        function hasNumber(myString) {
+            return /\d/.test(myString);
+        };
+
+        function isEmailValid(emailString) {
+            if (emailString.length < 5) {
+                return false;
+            }
+
+            //            var atIndex = 0;
+            //            var atCnt = 0;
+            //            while (atIndex !== -1) {
+            //                atIndex = emailString.indexOf("@", atIndex);
+            //                atCnt++;
+            //            }
+            //            if (atCnt !== 0) {
+            //                return false;
+            //            }
+
+            var atIndex = emailString.indexOf("@");
+            if (atIndex === -1) {
+                return false;
+            }
+
+            var dotIndex = emailString.indexOf(".");
+            if (dotIndex === -1) {
+                return false;
+            }
+
+
+            return true;
+        };
+
         function validate() {
-            if (document.myForm.Name.value == "") {
-                alert("Please provide your name!");
-                document.myForm.Name.focus();
+
+            var first_name = document.getElementById("myForm").elements.namedItem("firstName").value;
+            var last_name = document.getElementById("myForm").elements.namedItem("lastName").value;
+            var this_email = document.getElementById("myForm").elements.namedItem("email").value;
+            var this_password = document.getElementById("myForm").elements.namedItem("password").value;
+            var password_2 = document.getElementById("myForm").elements.namedItem("password2").value;
+            var this_address = document.getElementById("myForm").elements.namedItem("address").value;
+            var this_city = document.getElementById("myForm").elements.namedItem("city").value;
+            var this_state = document.getElementById("myForm").elements.namedItem("state").value;
+            var this_zip = document.getElementById("myForm").elements.namedItem("zip").value;
+
+            //validating first name, done
+            if (first_name == "") {
+                alert("Please provide your first name!");
+                document.getElementById("myForm").elements.namedItem("firstName").focus();
                 return false;
             }
-            if (document.myForm.EMail.value == "") {
-                alert("Please provide your Email!");
-                document.myForm.EMail.focus();
-                return false;
-                Javascript
-                355
-            }
-            if (document.myForm.Zip.value == "" ||
-                isNaN(document.myForm.Zip.value) ||
-                document.myForm.Zip.value.length != 5) {
-                alert("Please provide a zip in the format #####.");
-                document.myForm.Zip.focus();
+            if (!isAlpha(first_name)) {
+                alert("First name must be all letters");
+                document.getElementById("myForm").elements.namedItem("firstName").focus();
                 return false;
             }
-            if (document.myForm.Country.value == "-1") {
-                alert("Please provide your country!");
+
+
+            //validating last name, done
+            if (last_name == "") {
+                alert("Please provide your last name!");
+                document.getElementById("myForm").elements.namedItem("lastName").focus();
                 return false;
             }
+            if (!isAlpha(last_name)) {
+                alert("Last name must be all letters");
+                document.getElementById("myForm").elements.namedItem("lastName").focus();
+                return false;
+            }
+
+
+            //validating email, done
+            if (this_email == "") {
+                alert("Please provide your email!");
+                document.getElementById("myForm").elements.namedItem("email").focus();
+                return false;
+            }
+            if (!isEmailValid(this_email)) {
+                alert("The email address entered is invalid");
+                document.getElementById("myForm").elements.namedItem("email").focus();
+                return false;
+            }
+
+
+            //validating password, done
+            if (this_password == "") {
+                alert("Please provide a password!");
+                document.getElementById("myForm").elements.namedItem("password").focus();
+                return false;
+            }
+            if (this_password.length < 8) {
+                alert("Password must contain more than eight character");
+                document.getElementById("myForm").elements.namedItem("password").focus();
+                return false;
+            }
+
+
+            //validating password 2, done
+            if (password_2 == "") {
+                alert("Please re-enter your password!");
+                document.getElementById("myForm").elements.namedItem("password2").focus();
+                return false;
+            }
+            if (password_2 !== this_password) {
+                alert("Both passwords must match");
+                document.getElementById("myForm").elements.namedItem("password2").focus();
+                return false;
+            }
+
+
+            //validating address, done
+            if (this_address == "") {
+                alert("Please provide your address!");
+                document.getElementById("myForm").elements.namedItem("address").focus();
+                return false;
+            }
+            if (!isAlphaNumeric(this_address)) {
+                alert("Address must contain only alphanumeric characters");
+                document.getElementById("myForm").elements.namedItem("address").focus();
+                return false;
+            }
+            if (this_address.length < 8) {
+                alert("Address is not long enough");
+                document.getElementById("myForm").elements.namedItem("address").focus();
+                return false;
+            }
+            if (!hasNumber(this_address)) {
+                alert("Address must contain a number");
+                document.getElementById("myForm").elements.namedItem("address").focus();
+                return false;
+            }
+
+
+            //validating city, done
+            if (this_city == "") {
+                alert("Please provide your city!");
+                document.getElementById("myForm").elements.namedItem("city").focus();
+                return false;
+            }
+            if (!isAlpha(this_city)) {
+                alert("City name must be all letters");
+                document.getElementById("myForm").elements.namedItem("city").focus();
+                return false;
+            }
+            if (this_city.length < 4) {
+                alert("City name is not long enough");
+                document.getElementById("myForm").elements.namedItem("city").focus();
+                return false;
+            }
+
+
+            //validating state, done
+            if (this_state == "-1") {
+                alert("Please select a state!");
+                document.getElementById("myForm").elements.namedItem("state").focus();
+                return false;
+            }
+
+
+            //validating zip code, done
+            if (this_zip == "") {
+                alert("Please provide your zip code!");
+                document.getElementById("myForm").elements.namedItem("zip").focus();
+                return false;
+            }
+            if (!isNum(this_zip)) {
+                alert("Zip code must be all numbers");
+                document.getElementById("myForm").elements.namedItem("this_zip").focus();
+            }
+            if (this_zip.length !== 5) {
+                alert("Zip code must be 5 digits");
+                document.getElementById("myForm").elements.namedItem("this_zip").focus();
+            }
+
             return (true);
-        }
+        };
 
     </script>
 
@@ -75,104 +262,93 @@
                 <div class="log-form" style="text-align: center; width:30%;margin-left:auto;margin-right:auto;">
                     <h2 style="text-align: center">Sign Up</h2>
                     <p></p>
-                    <form name="signUpForm" onsubmit="return(validate());">
-                        <p>First Name</p>
-                        <input type="text" title="firstName" placeholder="First Name" />
-                        <p></p>
 
-                        <p>Last Name</p>
-                        <input type="text" title="LastName" placeholder="Last Name" />
-                        <p></p>
 
-                        <p>Email</p>
-                        <input type="text" title="email" placeholder="Email" />
-                        <p></p>
+                    <form id="myForm" onsubmit="return(validate());">
 
-                        <p>Password</p>
-                        <input type="text" title="password" placeholder="Password" />
-                        <p></p>
+                        <h4>First Name</h4>
+                        <input type="text" id="firstName" placeholder="First Name" />
 
-                        <p>Re-enter Password</p>
-                        <input type="text" title="password" placeholder="Re-enter Password" />
-                        <p></p>
+                        <h4>Last Name</h4>
+                        <input type="text" id="lastName" placeholder="Last Name" />
 
-                        <p>Street Address</p>
-                        <input type="text" title="address" placeholder="Street Address" />
-                        <p></p>
+                        <h4>Email</h4>
+                        <input type="text" id="email" placeholder="Email" />
 
-                        <p>City</p>
-                        <input type="text" title="city" placeholder="City" />
-                        <p></p>
+                        <h4>Password</h4>
+                        <input type="password" id="password" placeholder="Password" />
 
-                        <!--                        <input type="text" title="state" placeholder="State" />-->
-                        <p>State</p>
-                        <select name="Country">
+                        <h4>Re-enter Password</h4>
+                        <input type="password" id="password2" placeholder="Re-enter Password" />
+
+                        <h4>Street Address</h4>
+                        <input type="text" id="address" placeholder="Street Address" />
+
+                        <h4>City</h4>
+                        <input type="text" id="city" placeholder="City" />
+
+                        <h4>State</h4>
+                        <select id="state">
                             <option value="-1" selected>Select State...</option>
                             <option value="1">Alabama</option>
                             <option value="2">Alaska</option>
                             <option value="3">Arizona</option>
                             <option value="4">Arkansas</option>
-                            <option value="5">Arizona</option>
-                            <option value="6">Arizona</option>
-                            <option value="7">Arizona</option>
-                            <option value="8">Arizona</option>
-                            <option value="9">Arizona</option>
-                            <option value="10">Arizona</option>
-                            <option value="11">Arizona</option>
-                            <option value="12">Arizona</option>
-                            <option value="13">Arizona</option>
-                            <option value="14">Arizona</option>
-                            <option value="15">Arizona</option>
-                            <option value="16">Arizona</option>
-                            <option value="17">Arizona</option>
-                            <option value="18">Arizona</option>
-                            <option value="19">Arizona</option>
-                            <option value="20">Arizona</option>
-                            <option value="21">Arizona</option>
-                            <option value="22">Arizona</option>
-                            <option value="23">Arizona</option>
-                            <option value="24">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-                            <option value="3">Arizona</option>
-
+                            <option value="5">California</option>
+                            <option value="6">Colorado</option>
+                            <option value="7">Connecticut</option>
+                            <option value="8">Delaware</option>
+                            <option value="9">Florida</option>
+                            <option value="10">Georgia</option>
+                            <option value="11">Hawaii</option>
+                            <option value="12">Idaho</option>
+                            <option value="13">Illinois</option>
+                            <option value="14">Indiana</option>
+                            <option value="15">Iowa</option>
+                            <option value="16">Kansas</option>
+                            <option value="17">Kentucky</option>
+                            <option value="18">Louisiana</option>
+                            <option value="19">Maine</option>
+                            <option value="20">Maryland</option>
+                            <option value="21">Massachusetts</option>
+                            <option value="22">Michigan</option>
+                            <option value="23">Minnesota</option>
+                            <option value="24">Mississippi</option>
+                            <option value="25">Missouri</option>
+                            <option value="26">Montana</option>
+                            <option value="27">Nebraska</option>
+                            <option value="28">Nevada</option>
+                            <option value="29">New Hampshire</option>
+                            <option value="30">New Jersey</option>
+                            <option value="31">New Mexico</option>
+                            <option value="32">New York</option>
+                            <option value="33">North Carolina</option>
+                            <option value="34">North Dakota</option>
+                            <option value="35">Ohio</option>
+                            <option value="36">Oklahoma</option>
+                            <option value="37">Oregon</option>
+                            <option value="38">Pennsylvania</option>
+                            <option value="39">Rhode Island</option>
+                            <option value="40">South Carolina</option>
+                            <option value="41">South Dakota</option>
+                            <option value="42">Tennessee</option>
+                            <option value="43">Texas</option>
+                            <option value="44">Utah</option>
+                            <option value="45">Vermont</option>
+                            <option value="46">Virginia</option>
+                            <option value="47">Washington</option>
+                            <option value="48">West Virginia</option>
+                            <option value="49">Wisconsin</option>
+                            <option value="50">Wyoming</option>
                         </select>
+
+                        <h4>Zip Code</h4>
+                        <input type="text" id="zip" placeholder="5-digit Zip Code" />
                         <p></p>
 
-                        <!--                        	
- ·  ·  ·  · California · Colorado · Connecticut · Delaware · Florida · Georgia · Hawaii · Idaho · Illinois · Indiana · Iowa · Kansas · Kentucky · Louisiana · Maine · Maryland · Massachusetts · Michigan · Minnesota · Mississippi · Missouri · Montana · Nebraska · Nevada · New Hampshire · New Jersey · New Mexico · New York · North Carolina · North Dakota · Ohio · Oklahoma · Oregon · Pennsylvania · Rhode Island · South Carolina · South Dakota · Tennessee · Texas · Utah · Vermont · Virginia · Washington · West Virginia · Wisconsin · Wyoming-->
-                        <p>Zip Code</p>
-                        <input type="text" title="zip" placeholder="5-digit Zip Code" />
-                        <p></p>
-                        <p></p>
                         <button type="submit" class="btn">Sign Up</button>
                     </form>
                 </div>
-                <!--end log form -->
             </div>
 
         </div>
@@ -180,13 +356,15 @@
     </div>
 
     <!-- Scripts -->
+    <!--
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    [if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]
     <script src="assets/js/main.js"></script>
+-->
 
 </body>
 
