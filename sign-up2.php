@@ -24,9 +24,9 @@ $Zipcode = $_POST['Zipcode'] ?? '';
 $sql = "INSERT INTO currentUsers (FirstName, LastName, Email, Password, Address, City, State, Zipcode) VALUES ('$FirstName', '$LastName', '$Email', MD5('$Password'), '$Address', '$City', '$State', '$Zipcode')";
 
 if(mysqli_query($link, $sql)){
-    header("Location: sign-up.php?wrong=1");
+    header("Location: sign-up.html?wrong=1");
 } else{
-    header("Location: sign-up.php?wrong=2");
+    header("Location: sign-up.html?wrong=2");
 }	
 
 ?>
