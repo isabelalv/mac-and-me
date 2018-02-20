@@ -231,9 +231,8 @@
         };
 
         function checkStatus() {
-            if (window.location.href === "localhost/mac-and-me/sign-up.html") {
-                //do nothing
-            } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=1") {
+            var current = window.location.href;
+            if (window.location.href === current + "?wrong=1") {
                 alert("Your information was processed successfully");
                 location.href = "localhost/mac-and-me/sign-up.html";
             } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=2") {
