@@ -235,10 +235,13 @@
                 //do nothing
             } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=1") {
                 alert("Your information was processed successfully");
+                location.href = "localhost/mac-and-me/sign-up.html";
             } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=2") {
                 alert("The email you entered has already been associated with an account");
+                location.href = "localhost/mac-and-me/sign-up.html";
             } else {
                 alert("oops");
+                location.href = "localhost/mac-and-me/sign-up.html";
             }
         }
 
