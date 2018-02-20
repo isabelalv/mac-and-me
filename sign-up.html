@@ -226,14 +226,27 @@
                 document.getElementById("myForm").elements.namedItem("this_zip").focus();
             }
 
+            onS
             return (true);
         };
+
+        function checkStatus() {
+            if (window.location.href === "localhost/mac-and-me/sign-up.html") {
+                //do nothing
+            } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=1") {
+                alert("Your information was processed successfully");
+            } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=2") {
+                alert("The email you entered has already been associated with an account");
+            } else {
+                alert("oops");
+            }
+        }
 
     </script>
 
 </head>
 
-<body class="no-sidebar">
+<body class="no-sidebar" onload="checkStatus()">
     <div id="page-wrapper">
 
         <!-- Header -->
@@ -264,31 +277,31 @@
                     <p></p>
 
 
-                    <form id="myForm" onsubmit="return(validate());">
+                    <form id="myForm" onsubmit="return validate();" action="sign-up2.php" method="post">
 
                         <h4>First Name</h4>
-                        <input type="text" id="firstName" placeholder="First Name" />
+                        <input type="text" id="firstName" name="FirstName" placeholder="First Name" />
 
                         <h4>Last Name</h4>
-                        <input type="text" id="lastName" placeholder="Last Name" />
+                        <input type="text" id="lastName" name="LastName" placeholder="Last Name" />
 
                         <h4>Email</h4>
-                        <input type="text" id="email" placeholder="Email" />
+                        <input type="text" id="email" name="Email" placeholder="Email" />
 
                         <h4>Password</h4>
-                        <input type="password" id="password" placeholder="Password" />
+                        <input type="password" id="password" name="Password" placeholder="Password" />
 
                         <h4>Re-enter Password</h4>
-                        <input type="password" id="password2" placeholder="Re-enter Password" />
+                        <input type="password" id="password2" name="Password" placeholder="Re-enter Password" />
 
                         <h4>Street Address</h4>
-                        <input type="text" id="address" placeholder="Street Address" />
+                        <input type="text" id="address" name="Address" placeholder="Street Address" />
 
                         <h4>City</h4>
-                        <input type="text" id="city" placeholder="City" />
+                        <input type="text" id="city" name="City" placeholder="City" />
 
                         <h4>State</h4>
-                        <select id="state">
+                        <select id="state" name="State">
                             <option value="-1" selected>Select State...</option>
                             <option value="1">Alabama</option>
                             <option value="2">Alaska</option>
@@ -343,7 +356,7 @@
                         </select>
 
                         <h4>Zip Code</h4>
-                        <input type="text" id="zip" placeholder="5-digit Zip Code" />
+                        <input type="text" id="zip" name="Zipcode" placeholder="5-digit Zip Code" />
                         <p></p>
 
                         <button type="submit" class="btn">Sign Up</button>
