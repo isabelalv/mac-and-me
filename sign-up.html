@@ -17,7 +17,6 @@
     <script type="text/javascript">
         function isAlphaNumeric(str) {
             var code, i, len;
-
             for (i = 0, len = str.length; i < len; i++) {
                 code = str.charCodeAt(i);
                 if (!(code > 47 && code < 58) && !(code > 64 && code < 91) && !(code > 96 && code < 123) && !(code === 32)) { //space
@@ -26,23 +25,20 @@
             }
             return true;
         };
-
         function isAlpha(str) {
             var code, i, len;
-
             for (i = 0, len = str.length; i < len; i++) {
                 code = str.charCodeAt(i);
                 if (!(code > 64 && code < 91) && // upper alpha (A-Z)
-                    !(code > 96 && code < 123)) { // lower alpha (a-z)
+                    !(code > 96 && code < 123)&&
+                    !(code === 32)) { // lower alpha (a-z)
                     return false;
                 }
             }
             return true;
         };
-
         function isNum(str) {
             var code, i, len;
-
             for (i = 0, len = str.length; i < len; i++) {
                 code = str.charCodeAt(i);
                 if (!(code > 47 && code < 58)) {
@@ -51,16 +47,13 @@
             }
             return true;
         };
-
         function hasNumber(myString) {
             return /\d/.test(myString);
         };
-
         function isEmailValid(emailString) {
             if (emailString.length < 5) {
                 return false;
             }
-
             //            var atIndex = 0;
             //            var atCnt = 0;
             //            while (atIndex !== -1) {
@@ -70,23 +63,17 @@
             //            if (atCnt !== 0) {
             //                return false;
             //            }
-
             var atIndex = emailString.indexOf("@");
             if (atIndex === -1) {
                 return false;
             }
-
             var dotIndex = emailString.indexOf(".");
             if (dotIndex === -1) {
                 return false;
             }
-
-
             return true;
         };
-
         function validate() {
-
             var first_name = document.getElementById("myForm").elements.namedItem("firstName").value;
             var last_name = document.getElementById("myForm").elements.namedItem("lastName").value;
             var this_email = document.getElementById("myForm").elements.namedItem("email").value;
@@ -96,7 +83,6 @@
             var this_city = document.getElementById("myForm").elements.namedItem("city").value;
             var this_state = document.getElementById("myForm").elements.namedItem("state").value;
             var this_zip = document.getElementById("myForm").elements.namedItem("zip").value;
-
             //validating first name, done
             if (first_name == "") {
                 alert("Please provide your first name!");
@@ -108,8 +94,6 @@
                 document.getElementById("myForm").elements.namedItem("firstName").focus();
                 return false;
             }
-
-
             //validating last name, done
             if (last_name == "") {
                 alert("Please provide your last name!");
@@ -121,8 +105,6 @@
                 document.getElementById("myForm").elements.namedItem("lastName").focus();
                 return false;
             }
-
-
             //validating email, done
             if (this_email == "") {
                 alert("Please provide your email!");
@@ -134,8 +116,6 @@
                 document.getElementById("myForm").elements.namedItem("email").focus();
                 return false;
             }
-
-
             //validating password, done
             if (this_password == "") {
                 alert("Please provide a password!");
@@ -147,8 +127,6 @@
                 document.getElementById("myForm").elements.namedItem("password").focus();
                 return false;
             }
-
-
             //validating password 2, done
             if (password_2 == "") {
                 alert("Please re-enter your password!");
@@ -160,8 +138,6 @@
                 document.getElementById("myForm").elements.namedItem("password2").focus();
                 return false;
             }
-
-
             //validating address, done
             if (this_address == "") {
                 alert("Please provide your address!");
@@ -183,8 +159,6 @@
                 document.getElementById("myForm").elements.namedItem("address").focus();
                 return false;
             }
-
-
             //validating city, done
             if (this_city == "") {
                 alert("Please provide your city!");
@@ -201,16 +175,12 @@
                 document.getElementById("myForm").elements.namedItem("city").focus();
                 return false;
             }
-
-
             //validating state, done
             if (this_state == "-1") {
                 alert("Please select a state!");
                 document.getElementById("myForm").elements.namedItem("state").focus();
                 return false;
             }
-
-
             //validating zip code, done
             if (this_zip == "") {
                 alert("Please provide your zip code!");
@@ -225,26 +195,26 @@
                 alert("Zip code must be 5 digits");
                 document.getElementById("myForm").elements.namedItem("this_zip").focus();
             }
-
             onS
             return (true);
         };
-
         function checkStatus() {
-            if (window.location.href === "localhost/mac-and-me/sign-up.html") {
-                //do nothing
-            } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=1") {
+            
+            if ( (window.location.href === "http://localhost/mac-and-me-master/sign-up.html") || (window.location.href === "https://localhost/mac-and-me-master/sign-up.html")) {
+        
+                 //do nothing
+            }else if ( window.location.href.match("wrong=1") ){
                 alert("Your information was processed successfully");
-                location.href = "localhost/mac-and-me/sign-up.html";
-            } else if (window.location.href === "localhost/mac-and-me/sign-up.html?wrong=2") {
-                alert("The email you entered has already been associated with an account");
-                location.href = "localhost/mac-and-me/sign-up.html";
-            } else {
-                alert("oops");
-                location.href = "localhost/mac-and-me/sign-up.html";
+                window.location.href="http://localhost/mac-and-me-master/sign-up.html";
+             } else if (window.location.href.match("wrong=2")) {
+                 alert("The email you entered has already been associated with an account");
+                 window.location.href="http://localhost/mac-and-me-master/sign-up.html";
+             } 
+             else {
+                alert("Unexpected URL");
+                window.location.href="http://localhost/mac-and-me-master/sign-up.html";
             }
         }
-
     </script>
 
 </head>
@@ -280,7 +250,7 @@
                     <p></p>
 
 
-                    <form id="myForm" onsubmit="return validate();" action="sign-up2.php" method="post">
+                    <form id="myForm" onSubmit="return validate();" action="sign-up2.php" method="post">
 
                         <h4>First Name</h4>
                         <input type="text" id="firstName" name="FirstName" placeholder="First Name" />
@@ -373,7 +343,6 @@
 
     <!-- Scripts -->
     <!--
-
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
