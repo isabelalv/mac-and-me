@@ -23,7 +23,7 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
            else  
            {  
                 echo '<script>alert("Item Already Added")</script>';  
-                echo '<script>window.location="order-now.php.php"</script>';  
+                echo '<script>window.location="order-now.php"</script>';  
            }  
       }  
       else  
