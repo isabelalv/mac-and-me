@@ -1,4 +1,5 @@
-<!--- source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html --->   
+<!--- Used this source for the layout of the "Order Now" page as well as the "Shopping Cart" section.
+source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html --->   
 
 <?php   
  session_start();  
@@ -22,7 +23,7 @@
            else  
            {  
                 echo '<script>alert("Item Already Added")</script>';  
-                echo '<script>window.location="shopping-cart.php"</script>';  
+                echo '<script>window.location="order-now.php.php"</script>';  
            }  
       }  
       else  
@@ -46,7 +47,7 @@
                 {  
                      unset($_SESSION["shopping_cart"][$keys]);  
                      echo '<script>alert("Item Removed")</script>';  
-                     echo '<script>window.location="shopping-cart.php"</script>';  
+                     echo '<script>window.location="order-now.php"</script>';  
                 }  
            }  
       }  
@@ -56,7 +57,7 @@
  <!DOCTYPE html>  
  <html>  
       <head>  
-           <title>Mac & Me - Shopping Cart</title>  
+           <title>Mac & Me - Order Now</title>  
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -90,7 +91,7 @@
                 </div>
            <br />  
            <div class="container" style="width:700px;">  
-                <h3 align="center">Shopping Cart</h3><br />  
+                <h3 align="center">Order Now!</h3><br />  
                 <?php  
                 $query = "SELECT * FROM products ORDER BY id ASC";  
                 $result = mysqli_query($connect, $query);  
@@ -100,7 +101,7 @@
                      {  
                 ?>  
                 <div class="col-md-4">  
-                     <form method="post" action="shopping-cart.php?action=add&id=<?php echo $row["id"]; ?>">  
+                     <form method="post" action="order-now.php?action=add&id=<?php echo $row["id"]; ?>">  
                           <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">  
                                <img src="<?php echo $row["image"]; ?>" class="img-responsive" /><br />  
                                <h4 class="text-info"><?php echo $row["name"]; ?></h4>  
@@ -118,7 +119,7 @@
                 ?>  
                 <div style="clear:both"></div>  
                 <br />  
-                <h3>Order Details</h3>  
+                <h3>Shopping Cart</h3>  
                 <div class="table-responsive">  
                      <table class="table table-bordered">  
                           <tr>  
@@ -140,7 +141,7 @@
                                <td><?php echo $values["item_quantity"]; ?></td>  
                                <td>$ <?php echo $values["item_price"]; ?></td>  
                                <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>  
-                               <td><a href="shopping-cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>  
+                               <td><a href="order-now.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>  
                           </tr>  
                           <?php  
                                     $total = $total + ($values["item_quantity"] * $values["item_price"]);  
@@ -160,4 +161,7 @@
            <br />
           </div>
       </body>  
+            <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
+                <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
+            </ul>
  </html>
