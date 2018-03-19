@@ -37,6 +37,7 @@
                 </nav>
 
             </div>
+
         </div>
 
 
@@ -49,7 +50,9 @@
 
                 <div class="row" style="width:90%;margin-left:auto;margin-right:auto;">
                     <section class="6u 12u(narrower)" style="width:99%; margin-left:auto;margin-right:auto;">
-                        <form method="post" action="#">
+
+                        <!--<form id="myForm" onSubmit="return validate();" action="sign-up2.php" method="post">-->
+                        <form id="contactForm" onSubmit=t rue method="post" action="contact.php">
                             <div class="row 50%">
                                 <div class="6u 12u(mobile)">
                                     <input name="name" placeholder="Name" type="text" />
@@ -68,9 +71,6 @@
                                     <ul class="actions">
                                         <li>
                                             <input type="submit" value="Send Message" />
-                                        </li>
-                                        <li>
-                                            <input type="reset" value="Clear form" />
                                         </li>
                                     </ul>
                                 </div>
@@ -97,5 +97,8 @@
 -->
 
 </body>
+<ul id="hero" style="position: absolute; right: 20px; top: 10px;">
+    <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
+</ul>
 
 </html>

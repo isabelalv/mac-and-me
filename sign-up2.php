@@ -24,9 +24,28 @@ $Zipcode = $_POST['Zipcode'] ?? '';
 $sql = "INSERT INTO currentUsers (FirstName, LastName, Email, Password, Address, City, State, Zipcode) VALUES ('$FirstName', '$LastName', '$Email', MD5('$Password'), '$Address', '$City', '$State', '$Zipcode')";
 
 if(mysqli_query($link, $sql)){
-    header("Location: sign-up.html?wrong=1");
+    
+    require 'PHPMailerAutoload.php';
+    
+    $mail = new PHPMailer;
+    $mail->setFrom('macnmeuva@gmail.com', 'Mac and Me');
+    $mail->addAddress($Email, $FirstName);
+    $mail->Subject  = 'Your account with Mac and Me has been created';
+    $mail->Body     = 'Hello! ';
+    
+    //this is for testing only, we have to remove it later!
+    if(!$mail->send()) {
+      echo 'Message was not sent.';
+      echo 'Mailer error: ' . $mail->ErrorInfo;
+    } else {
+      echo 'Message has been sent.';
+    }
+    //this is the end of the code we need to remove
+    
+    header("Location: sign-up.html?wrong=1"); // there was no error
+    
 } else{
-    header("Location: sign-up.html?wrong=2");
+    header("Location: sign-up.html?wrong=2"); // there was an error
 }	
 
 ?>
