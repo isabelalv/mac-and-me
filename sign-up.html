@@ -25,18 +25,20 @@
             }
             return true;
         };
+
         function isAlpha(str) {
             var code, i, len;
             for (i = 0, len = str.length; i < len; i++) {
                 code = str.charCodeAt(i);
                 if (!(code > 64 && code < 91) && // upper alpha (A-Z)
-                    !(code > 96 && code < 123)&&
+                    !(code > 96 && code < 123) &&
                     !(code === 32)) { // lower alpha (a-z)
                     return false;
                 }
             }
             return true;
         };
+
         function isNum(str) {
             var code, i, len;
             for (i = 0, len = str.length; i < len; i++) {
@@ -47,9 +49,11 @@
             }
             return true;
         };
+
         function hasNumber(myString) {
             return /\d/.test(myString);
         };
+
         function isEmailValid(emailString) {
             if (emailString.length < 5) {
                 return false;
@@ -72,7 +76,12 @@
                 return false;
             }
             return true;
+
+            //source: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(emailString);
         };
+
         function validate() {
             var first_name = document.getElementById("myForm").elements.namedItem("firstName").value;
             var last_name = document.getElementById("myForm").elements.namedItem("lastName").value;
@@ -144,11 +153,11 @@
                 document.getElementById("myForm").elements.namedItem("address").focus();
                 return false;
             }
-            if (!isAlphaNumeric(this_address)) {
-                alert("Address must contain only alphanumeric characters");
-                document.getElementById("myForm").elements.namedItem("address").focus();
-                return false;
-            }
+            //            if (!isAlphaNumeric(this_address)) {
+            //                alert("Address must contain only alphanumeric characters");
+            //                document.getElementById("myForm").elements.namedItem("address").focus();
+            //                return false;
+            //            }
             if (this_address.length < 8) {
                 alert("Address is not long enough");
                 document.getElementById("myForm").elements.namedItem("address").focus();
@@ -159,6 +168,17 @@
                 document.getElementById("myForm").elements.namedItem("address").focus();
                 return false;
             }
+            //more complete email validation
+            //source: https://stackoverflow.com/questions/3763820/javascript-regular-expression-to-validate-an-address
+            //^[a-zA-Z0-9\s,'-]*$
+            var re = "^[a-zA-Z0-9\s,'-]*$";
+            if (!re.test(this_address)) {
+                alert("The address entered is invalid");
+                document.getElementById("myForm").elements.namedItem("address").focus();
+                return false;
+            }
+
+
             //validating city, done
             if (this_city == "") {
                 alert("Please provide your city!");
@@ -189,32 +209,35 @@
             }
             if (!isNum(this_zip)) {
                 alert("Zip code must be all numbers");
-                document.getElementById("myForm").elements.namedItem("this_zip").focus();
+                document.getElementById("myForm").elements.namedItem("zip").focus();
+                return false;
             }
             if (this_zip.length !== 5) {
                 alert("Zip code must be 5 digits");
-                document.getElementById("myForm").elements.namedItem("this_zip").focus();
+                document.getElementById("myForm").elements.namedItem("zip").focus();
+                return false;
             }
-            onS
+
             return (true);
         };
+
         function checkStatus() {
-            
-            if ( (window.location.href === "http://localhost/mac-and-me-master/sign-up.html") || (window.location.href === "https://localhost/mac-and-me-master/sign-up.html")) {
-        
-                 //do nothing
-            }else if ( window.location.href.match("wrong=1") ){
+
+            if ((window.location.href === "http://localhost/mac-and-me-master/sign-up.html") || (window.location.href === "https://localhost/mac-and-me-master/sign-up.html")) {
+
+                //do nothing
+            } else if (window.location.href.match("wrong=1")) {
                 alert("Your information was processed successfully");
-                window.location.href="http://localhost/mac-and-me-master/sign-up.html";
-             } else if (window.location.href.match("wrong=2")) {
-                 alert("The email you entered has already been associated with an account");
-                 window.location.href="http://localhost/mac-and-me-master/sign-up.html";
-             } 
-             else {
+                window.location.href = "http://localhost/mac-and-me-master/sign-up.html";
+            } else if (window.location.href.match("wrong=2")) {
+                alert("The email you entered has already been associated with an account");
+                window.location.href = "http://localhost/mac-and-me-master/sign-up.html";
+            } else {
                 alert("Unexpected URL");
-                window.location.href="http://localhost/mac-and-me-master/sign-up.html";
+                window.location.href = "http://localhost/mac-and-me-master/sign-up.html";
             }
         }
+
     </script>
 
 </head>
@@ -240,7 +263,7 @@
                 </nav>
 
             </div>
-            <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
+            <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
                 <li><a href="shopping-cart.html" class="button"><strong>Cart</strong></a></li>
             </ul>
         </div>
@@ -343,7 +366,7 @@
         </div>
 
     </div>
-    
+
 
     <!-- Scripts -->
     <!--
@@ -356,8 +379,8 @@
 -->
 
 </body>
-<ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
-                <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
-            </ul>
+<ul id="hero" style="position: absolute; right: 20px; top: 10px;">
+    <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
+</ul>
 
 </html>
