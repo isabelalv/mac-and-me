@@ -158,6 +158,9 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
            </div>  
            <br />
           </div>
+          <div style="text-align: center; vertical-align: bottom;">
+                <p><strong>© Mac & Me. All rights reserved.     |   Shopping Cart Design: Webslesson</strong></p>
+            </div>
       </body>  
             <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
                 <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
