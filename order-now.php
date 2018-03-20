@@ -163,6 +163,7 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                 <input type="hidden" name="price" value="<?php echo $total;?>" />
                 <input type="hidden" name="data" value="mqnRbZb0/9YYMCwjhb90swrP6fFZWDIHe+NqmuWIjPrC2cJ2Gchbp2jWIUUaBFBSrh9czNR2L1i7nBq6S4w+KBKS5aLBcEwD1XloliNvWXbGEmvjJsWLozrAgnqg+4yaaEQa0+YlFL204utLWM1pj1eg2Y4HylK1qxZaXtpBfCkkHrX8gKBl2egoraHtMiqq" />
                 <input type="image" src="https://test.bitpay.com/img/button-medium.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+
               </form>
                
            </div>  
