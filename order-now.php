@@ -1,5 +1,5 @@
 <!--- Used this source for the layout of the "Order Now" page as well as the "Shopping Cart" section.
-source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html --->   
+source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -->   
 <?php   
  session_start();  
  $connect = mysqli_connect("localhost", "root", "", "macnmedb");  
@@ -107,7 +107,7 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                                <input type="text" name="quantity" class="form-control" value="1" />  
                                <input type="hidden" name="hidden_name" value="<?php echo $row["name"]; ?>" />  
                                <input type="hidden" name="hidden_price" value="<?php echo $row["price"]; ?>" />  
-                               <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />  
+                               <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
                           </div>  
                      </form>  
                 </div>  
@@ -155,12 +155,19 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                           ?>  
                      </table>  
                 </div>  
+                <!-- BUTTON -->
+
+               <form action="https://test.bitpay.com/checkout" method="post" >
+                <input type="hidden" name="action" value="checkout" />
+                <input type="hidden" name="posData" value="" />
+                <input type="hidden" name="price" value="<?php echo $total;?>" />
+                <input type="hidden" name="data" value="mqnRbZb0/9YYMCwjhb90swrP6fFZWDIHe+NqmuWIjPrC2cJ2Gchbp2jWIUUaBFBSrh9czNR2L1i7nBq6S4w+KBKS5aLBcEwD1XloliNvWXbGEmvjJsWLozrAgnqg+4yaaEQa0+YlFL204utLWM1pj1eg2Y4HylK1qxZaXtpBfCkkHrX8gKBl2egoraHtMiqq" />
+                <input type="image" src="https://test.bitpay.com/img/button-medium.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+              </form>
+               
            </div>  
            <br />
           </div>
-          <div style="text-align: center; vertical-align: bottom;">
-                <p><strong>© Mac & Me. All rights reserved.     |   Shopping Cart Design: Webslesson</strong></p>
-            </div>
       </body>  
             <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
                 <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
