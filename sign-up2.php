@@ -38,7 +38,7 @@ if(mysqli_query($link, $sql)){
     //in the official tutorial they do not use this, but this guy from stack overflow says to use it for gmail
     $mail->IsSMTP(); // enable SMTP
     $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPDebug = 4; // debugging: 1 = errors and messages, 2 = messages only
+    //$mail->SMTPDebug = 4; // debugging: 1 = errors and messages, 2 = messages only
     $mail->SMTPAuth = true; // authentication enabled
     $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
     $mail->Port = 587; // or 587
