@@ -59,7 +59,13 @@ if(mysqli_query($link, $sql)){
         )
     );
 
-        header("Location: sign-up.html?wrong=1"); // there was no error
+    $mail->send();
+        
+    //header("Location: sign-up.html?wrong=1"); // there was no error
+    
+    echo "<SCRIPT type='text/javascript'>
+            window.location='sign-up.html?wrong=1';
+        </script>";
 
     } else{
         

@@ -35,5 +35,10 @@ $mail->SMTPOptions = array(
     )
 );
 
-header("Location: contact-us.html");
+$mail->send();
+        
+    echo "<SCRIPT type='text/javascript'>
+            window.location='contact-us.html';
+        </script>";
+
 ?>
