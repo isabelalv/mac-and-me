@@ -65,19 +65,22 @@
             if (atIndex === -1) {
                 return false;
             }
+            //alert(atIndex);
 
-            //email contains more than one @
-            var tmpstr = emailString.substr(atIndex);
+            //email does not contains more than one @
+            var tmpstr = emailString.substr(atIndex + 1);
             var otherIndex = tmpstr.indexOf("@");
             if (otherIndex !== -1) {
                 return false;
             }
+
 
             //email contains at least one .
             var dotIndex = emailString.indexOf(".");
             if (dotIndex === -1) {
                 return false;
             }
+
             return true;
         };
 
@@ -92,6 +95,7 @@
             var this_city = document.getElementById("myForm").elements.namedItem("city").value;
             var this_state = document.getElementById("myForm").elements.namedItem("state").value;
             var this_zip = document.getElementById("myForm").elements.namedItem("zip").value;
+
             //validating first name, done
             if (first_name == "") {
                 alert("Please provide your first name!");
@@ -103,6 +107,7 @@
                 document.getElementById("myForm").elements.namedItem("firstName").focus();
                 return false;
             }
+
             //validating last name, done
             if (last_name == "") {
                 alert("Please provide your last name!");
@@ -114,17 +119,19 @@
                 document.getElementById("myForm").elements.namedItem("lastName").focus();
                 return false;
             }
-            //validating email, done
+
+            //validating email
             if (this_email == "") {
                 alert("Please provide your email!");
                 document.getElementById("myForm").elements.namedItem("email").focus();
                 return false;
             }
-            if (!isEmailValid(this_email)) {
+            if (isEmailValid(this_email) === false) {
                 alert("The email address entered is invalid");
                 document.getElementById("myForm").elements.namedItem("email").focus();
                 return false;
             }
+
             //validating password, done
             if (this_password == "") {
                 alert("Please provide a password!");
@@ -171,12 +178,7 @@
             //more complete email validation
             //source: https://stackoverflow.com/questions/3763820/javascript-regular-expression-to-validate-an-address
             //^[a-zA-Z0-9\s,'-]*$
-            var re = "^[a-zA-Z0-9\s,'-]*$";
-            if (!re.test(this_address)) {
-                alert("The address entered is invalid");
-                document.getElementById("myForm").elements.namedItem("address").focus();
-                return false;
-            }
+            //                var re = "^[a-zA-Z0-9\s,'-]*$"; // if (!re.test(this_address)) { // alert("The address entered is invalid"); // document.getElementById("myForm").elements.namedItem("address").focus(); // return false; // }
 
 
             //validating city, done
@@ -195,12 +197,14 @@
                 document.getElementById("myForm").elements.namedItem("city").focus();
                 return false;
             }
+
             //validating state, done
             if (this_state == "-1") {
                 alert("Please select a state!");
                 document.getElementById("myForm").elements.namedItem("state").focus();
                 return false;
             }
+
             //validating zip code, done
             if (this_zip == "") {
                 alert("Please provide your zip code!");
@@ -212,6 +216,7 @@
                 document.getElementById("myForm").elements.namedItem("zip").focus();
                 return false;
             }
+
             //i dont know if this check is working yet
             if (this_zip.length !== 5) {
                 alert("Zip code must be 5 digits");
@@ -259,7 +264,7 @@
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
                         <li class="break"><a href="sign-up.html">Sign Up</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.php">Login</a></li>
                     </ul>
                 </nav>
 
