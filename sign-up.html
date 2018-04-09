@@ -55,33 +55,33 @@
         };
 
         function isEmailValid(emailString) {
+            //email is at least 5 characters long
             if (emailString.length < 5) {
                 return false;
             }
-            //            var atIndex = 0;
-            //            var atCnt = 0;
-            //            while (atIndex !== -1) {
-            //                atIndex = emailString.indexOf("@", atIndex);
-            //                atCnt++;
-            //            }
-            //            if (atCnt !== 0) {
-            //                return false;
-            //            }
+
+            //email contains at least one @
             var atIndex = emailString.indexOf("@");
             if (atIndex === -1) {
                 return false;
             }
+
+            //email contains more than one @
+            var tmpstr = emailString.substr(atIndex);
+            var otherIndex = tmpstr.indexOf("@");
+            if (otherIndex !== -1) {
+                return false;
+            }
+
+            //email contains at least one .
             var dotIndex = emailString.indexOf(".");
             if (dotIndex === -1) {
                 return false;
             }
             return true;
-
-            //source: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(emailString);
         };
 
+        //validations not tested yet
         function validate() {
             var first_name = document.getElementById("myForm").elements.namedItem("firstName").value;
             var last_name = document.getElementById("myForm").elements.namedItem("lastName").value;
@@ -212,6 +212,7 @@
                 document.getElementById("myForm").elements.namedItem("zip").focus();
                 return false;
             }
+            //i dont know if this check is working yet
             if (this_zip.length !== 5) {
                 alert("Zip code must be 5 digits");
                 document.getElementById("myForm").elements.namedItem("zip").focus();

@@ -63,8 +63,9 @@ if(mysqli_query($link, $sql)){
         
     //header("Location: sign-up.html?wrong=1"); // there was no error
     
+    //this redirects to the member homepage
     echo "<SCRIPT type='text/javascript'>
-            window.location='sign-up.html?wrong=1';
+            window.location='member.php';
         </script>";
 
     } else{
