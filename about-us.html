@@ -4,6 +4,12 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
+<?php
+    if(isset($_POST["logout"])) {
+        $_SESSION = [];
+        session_destroy();
+    }
+?>
 <html>
 
 <head>
@@ -101,9 +107,9 @@
 <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
     <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
 </ul>
-    <form method="post" action="order-now.php">
+<form method="post" >
                 <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
-                    <li><a href="#" class="button"><strong>Logout</strong></a></li>
+                    <li><button type="submit" name="logout" class="button"><strong>Logout</strong></button></li>
                 </ul>
             </form>
 
