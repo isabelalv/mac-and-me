@@ -54,7 +54,18 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
  }
 if(isset($_POST["action"])) {
     if($_POST["action"]=="checkout"){
-        session_destroy();
+        
+           foreach($_SESSION["shopping_cart"] as $keys => $values)  
+           {  
+                if($values["item_id"] == $_GET["id"])  
+                {  
+                     unset($_SESSION["shopping_cart"][$keys]);  
+                     echo '<script>alert("Item Removed")</script>';  
+                     echo '<script>window.location="order-now.php"</script>';  
+                }  
+           } 
+           $total = 0;
+           $discount = 0;
     }
 }
 
@@ -207,4 +218,9 @@ if(isset($_POST["action"])) {
             <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
                 <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
             </ul>
+            <form method="post" action="order-now.php">
+                <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
+                    <li><a href="#" class="button"><strong>Logout</strong></a></li>
+                </ul>
+            </form>
  </html>
