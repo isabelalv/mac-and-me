@@ -35,6 +35,8 @@ session_start();
          header("location: member.php");
       }else {
           
+          //can i display this error using JS instead of PHP?
+
          $error = "Your Login Name or Password is invalid";
       }
    }
