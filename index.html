@@ -1,68 +1,58 @@
 <!DOCTYPE HTML>
-<!--
-	Telephasic by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<html>
 
-<?php
-session_start();
-include_once("config.php");
-?>
-    <html>
+<head>
+    <title>Mac & Me</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+</head>
 
-    <head>
-        <title>Mac & Me</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-    </head>
+<body style="background-color:rgba(255, 255, 255, 1);" class="homepage">
 
-    <body style="background-color:rgba(255, 255, 255, 1);" class="homepage">
+    <div id="page-wrapper" style="background-color:rgba(255, 255, 255, 1);">
 
-        <div id="page-wrapper" style="background-color:rgba(255, 255, 255, 1);">
+        <!-- Header -->
+        <div id="header-wrapper">
+            <div id="header" class="container">
 
-            <!-- Header -->
-            <div id="header-wrapper">
-                <div id="header" class="container">
+                <!-- Logo -->
+                <h1 id="logo"><a href="index.html">Mac & Me</a></h1>
 
-                    <!-- Logo -->
-                    <h1 id="logo"><a href="index.html">Mac & Me</a></h1>
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li class="break"><a href="sign-up.html">Sign Up</a></li>
+                        <li><a href="login.php">Login</a></li>
 
-                    <!-- Nav -->
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                            <li class="break"><a href="sign-up.html">Sign Up</a></li>
-                            <li><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
 
-                        </ul>
-                    </nav>
+            </div>
 
-                </div>
+            <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
+                <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
+            </ul>
 
-                <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
-                    <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
-                </ul>
+            <!-- Hero -->
+            <div style="background-color:rgba(241,139,137,0.4); margin:3%; padding: 3%; margin-bottom:17%;">
+                <section id="hero" class="container">
+                    <header>
+                        <h2><strong>Bring on the Cheese!</strong></h2>
+                    </header>
+                    <p><strong>Just as we each have a solid connection with our favorite dish, Mac n Cheese, we care about your growing relationship with this delicious entree/snack. In the delivery market where Mac n Cheese is rarely seen, we are here to please. We may sound cheesy but our Mac n Cheese is one of the best you’ll try!</strong></p>
+                    <ul class="actions">
+                        <li><a href="order-now.php" class="button"><strong>Order Now!</strong></a></li>
+                    </ul>
+                </section>
+            </div>
 
-                <!-- Hero -->
-                <div style="background-color:rgba(241,139,137,0.4); margin:3%; padding: 3%; margin-bottom:17%;">
-                    <section id="hero" class="container">
-                        <header>
-                            <h2><strong>Bring on the Cheese!</strong></h2>
-                        </header>
-                        <p><strong>Just as we each have a solid connection with our favorite dish, Mac n Cheese, we care about your growing relationship with this delicious entree/snack. In the delivery market where Mac n Cheese is rarely seen, we are here to please. We may sound cheesy but our Mac n Cheese is one of the best you’ll try!</strong></p>
-                        <ul class="actions">
-                            <li><a href="order-now.php" class="button"><strong>Order Now!</strong></a></li>
-                        </ul>
-                    </section>
-                </div>
-
-                <!--
+            <!--
             <div style="float: left; width: 33%;text-align:center;">
                 <img src="delivery.jpg" style="width: 450px; border:2px solid grey; margin: 20px;">
 
@@ -75,32 +65,32 @@ include_once("config.php");
                 <p><strong>We deliver straight to your door!</strong></p>
             </div>
 -->
-                <figure style="text-align: center; float: left; margin: 23px">
-                    <img src="we_deliver.png" style="width: 400px; margin 20px;" />
+            <figure style="text-align: center; float: left; margin: 23px">
+                <img src="we_deliver.png" style="width: 400px; margin 20px;" />
 
-                </figure>
+            </figure>
 
-                <figure style="text-align: center; float: left; margin-left: 100px; margin-right:100px; margin-top:0px; margin-bottom:0px;">
-                    <img src="high_quality.png" style="width: 250px; margin 20px;" />
+            <figure style="text-align: center; float: left; margin-left: 100px; margin-right:100px; margin-top:0px; margin-bottom:0px;">
+                <img src="high_quality.png" style="width: 250px; margin 20px;" />
 
-                </figure>
+            </figure>
 
-                <figure style="text-align: center; float: left; margin: 23px">
-                    <img src="low_price.png" style="width: 400px; margin 20px;" />
+            <figure style="text-align: center; float: left; margin: 23px">
+                <img src="low_price.png" style="width: 400px; margin 20px;" />
 
-                </figure>
+            </figure>
 
-                <!--            //style fixed! -->
-                <div style="padding-right: 35%;padding-left: 35%;">
-                    <p><strong>© Mac & Me. All rights reserved.     |   Design: HTML5 UP</strong></p>
-                </div>
-
-
+            <!--            //style fixed! -->
+            <div style="padding-right: 35%;padding-left: 35%;">
+                <p><strong>© Mac & Me. All rights reserved.     |   Design: HTML5 UP</strong></p>
             </div>
-        </div>
 
-        <!-- Scripts -->
-        <!--
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!--
 <script src="assets/js/jquery.min.js">
 </script>
 <script src="assets/js/jquery.dropotron.min.js"></script>
@@ -112,6 +102,6 @@ include_once("config.php");
     <script src="assets/js/main.js"></script>
 -->
 
-    </body>
+</body>
 
-    </html>
+</html>
