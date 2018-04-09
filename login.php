@@ -35,9 +35,8 @@ session_start();
          header("location: member.php");
       }else {
           
-          //can i display this error using JS instead of PHP?
-
-         $error = "Your Login Name or Password is invalid";
+         //$error = "Your Login Name or Password is invalid";
+          echo "";
       }
    }
 
@@ -56,6 +55,12 @@ session_start();
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
+        <script>
+            function displayError() {
+                alert("Your Email or Password is Invalid");
+            }
+
+        </script>
     </head>
 
     <body class="no-sidebar">
