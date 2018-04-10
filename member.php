@@ -10,6 +10,11 @@ if($link === false){
 //also, does the active session change how we access the info of the user in the database?
 //can I get a username from the session to search the database with?
 
+if(isset($_POST["logout"])) {
+        $_SESSION = [];
+        session_destroy();
+}
+
 ?>
 
     <!DOCTYPE html>
@@ -101,5 +106,10 @@ if($link === false){
     <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
         <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
     </ul>
+    <form method="post" >
+        <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
+                <li><button type="submit" name="logout" class="button"><strong>Logout</strong></button></li>
+         </ul>
+    </form>
 
     </html>
