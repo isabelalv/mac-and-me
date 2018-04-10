@@ -97,7 +97,7 @@ if(isset($_POST["action"])) {
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
                         <li class="break"><a href="sign-up.html">Sign Up</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.php">Login</a></li>
                     </ul>
                 </nav>
 
