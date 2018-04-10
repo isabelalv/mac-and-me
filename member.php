@@ -16,11 +16,12 @@ if ($_SESSION['loggedIn'] == true) {
     $row = mysqli_fetch_array($result);
 
 }
-
-// if (isset($_POST["logout"])) {
-//     $_SESSION = [];
-//     session_destroy();
-// }
+//if(isset($_GET["action"])){
+  //  if (isset($_POST["logout"]) {
+    //    $_SESSION = [];
+      //  session_destroy();
+    //}
+//}
 
 else {
 	header('Location: http://localhost/mac-and-me-master/index.html');
@@ -115,9 +116,9 @@ else {
         <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
     </ul>
 
-    <form method="post" >
+    <form method="post" action="member.php?action=logout">
         <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
-                <li><button type="submit" name="logout" class="button"><strong>Logout</strong></button></li>
+                <li><a href="logout.php">Logout</a></button></li>
          </ul>
     </form>
 
