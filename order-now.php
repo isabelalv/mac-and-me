@@ -49,8 +49,26 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                      echo '<script>window.location="order-now.php"</script>';  
                 }  
            }  
-      }  
- }  
+      }
+
+ }
+if(isset($_POST["action"])) {
+    if($_POST["action"]=="checkout"){
+        
+           foreach($_SESSION["shopping_cart"] as $keys => $values)  
+           {  
+                if($values["item_id"] == $_GET["id"])  
+                {  
+                     unset($_SESSION["shopping_cart"][$keys]);  
+                     echo '<script>alert("Item Removed")</script>';  
+                     echo '<script>window.location="order-now.php"</script>';  
+                }  
+           } 
+           $total = 0;
+           $discount = 0;
+    }
+}
+
  ?>  
  <!DOCTYPE html>  
  <html>  
@@ -121,8 +139,8 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                 <div class="table-responsive">  
                      <table class="table table-bordered">  
                           <tr>  
-                               <th width="40%">Item Name</th>  
-                               <th width="10%">Quantity</th>  
+                               <th align="center" width="40%">Item Name</th>  
+                               <th align="center" width="10%">Quantity</th>  
                                <th width="20%">Price</th>  
                                <th width="15%">Total</th>  
                                <th width="5%">Action</th>  
@@ -130,24 +148,36 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                           <?php   
                           if(!empty($_SESSION["shopping_cart"]))  
                           {  
-                               $total = 0;  
+                               $total = 0; 
+                               $discount = 0;
                                foreach($_SESSION["shopping_cart"] as $keys => $values)  
                                {  
                           ?>  
                           <tr>  
-                               <td><?php echo $values["item_name"]; ?></td>  
-                               <td><?php echo $values["item_quantity"]; ?></td>  
-                               <td>$ <?php echo $values["item_price"]; ?></td>  
-                               <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>  
+                               <td align="left"><?php echo $values["item_name"]; ?></td>  
+                               <td align="left"><?php echo $values["item_quantity"]; ?></td>  
+                               <td align="left">$ <?php echo $values["item_price"]; ?></td>  
+                               <td align="center">$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>  
                                <td><a href="order-now.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>  
                           </tr>  
                           <?php  
                                     $total = $total + ($values["item_quantity"] * $values["item_price"]);  
-                               }  
+                               }
+                                if(isset($_POST["promo-code"])) {
+                                    if($_POST["promo-code"]=="123"){
+                                        $discount = $total * 0.2;
+                                        $total = $total - $discount;
+                                    }
+                                }
                           ?>  
-                          <tr>  
+                          <tr> 
+                               <td colspan="3" align="right">Discount</td>  
+                               <td align="center">-$ <?php echo number_format($discount, 2); ?></td>  
+                               <td></td>
+                          </tr>
+                          <tr>
                                <td colspan="3" align="right">Total</td>  
-                               <td align="right">$ <?php echo number_format($total, 2); ?></td>  
+                               <td align="center">$ <?php echo number_format($total, 2); ?></td>  
                                <td></td>  
                           </tr>  
                           <?php  
@@ -157,12 +187,28 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
                 </div>  
                 <!-- BUTTON -->
 
+               <div class="form-horizontal" style="display:inline; padding: 5px; ">
+                    
+                <form method="post" action="order-now.php?promo-code=">
+                   <ul id="hero" style="diplay: inline-block; width: 125px; height: 25px; float:right;"> 
+                        <li><input type="text" name="promo-code" placeholder="Enter Code" style="display: inline-block; width: 125px; height: 25px;"></li>
+                        <li><button type="submit" class="button" style="line-height: 0em;
+                            padding: 0px; display: inline-block;  width: 125px; height: 25px; color: grey; font-size:20px;">Apply</button></li>
+                    </ul>
+                </form>
+                </div>
+               
+               <p>
+               </p>
                <form action="https://test.bitpay.com/checkout" method="post" >
                 <input type="hidden" name="action" value="checkout" />
                 <input type="hidden" name="posData" value="" />
                 <input type="hidden" name="price" value="<?php echo $total;?>" />
                 <input type="hidden" name="data" value="mqnRbZb0/9YYMCwjhb90swrP6fFZWDIHe+NqmuWIjPrC2cJ2Gchbp2jWIUUaBFBSrh9czNR2L1i7nBq6S4w+KBKS5aLBcEwD1XloliNvWXbGEmvjJsWLozrAgnqg+4yaaEQa0+YlFL204utLWM1pj1eg2Y4HylK1qxZaXtpBfCkkHrX8gKBl2egoraHtMiqq" />
-                <input type="image" src="https://test.bitpay.com/img/button-medium.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+                <div style="text-align: center; padding: 10px;">
+                    <input type="image" src="https://test.bitpay.com/img/button-medium.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+                </div>
+
               </form>
                
            </div>  
@@ -172,4 +218,9 @@ source: http://www.webslesson.info/2016/08/simple-php-mysql-shopping-cart.html -
             <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
                 <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
             </ul>
+            <form method="post" action="order-now.php">
+                <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
+                    <li><a href="#" class="button"><strong>Logout</strong></a></li>
+                </ul>
+            </form>
  </html>

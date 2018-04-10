@@ -97,6 +97,7 @@ video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    
 }
 .center {
     align-items: center;
@@ -1729,6 +1730,7 @@ table.default tfoot {
     border-top: solid 1px #D2D7DC;
 }
 
+
 /* Button */
 
 input[type="button"],
@@ -2611,3 +2613,4 @@ button:hover,
         margin-bottom: 1em;
     }
 }
+

@@ -32,7 +32,7 @@
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
                         <li class="break"><a href="sign-up.html">Sign Up</a></li>
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="login.php">Login</a></li>
                     </ul>
                 </nav>
 
@@ -88,6 +88,7 @@
 
     <!-- Scripts -->
     <!--
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
@@ -97,8 +98,13 @@
 -->
 
 </body>
-    <ul id="hero" style="position: absolute; right: 20px; top: 10px;"> 
-                <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
-    </ul>
+<ul id="hero" style="position: absolute; right: 20px; top: 10px;">
+    <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
+</ul>
+    <form method="post" action="order-now.php">
+                <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
+                    <li><a href="#" class="button"><strong>Logout</strong></a></li>
+                </ul>
+            </form>
 
 </html>
