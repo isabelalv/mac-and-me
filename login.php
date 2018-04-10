@@ -43,11 +43,7 @@ if($link === false){
         header("location: http://localhost/mac-and-me-master/member.php");
     }
     else {
-        echo "hi";
-        echo '<script type="text/javascript">',
-                'displayError();',
-                '</script>'
-                ;
+        echo "<script>alert('Your Email or Password is Invalid');</script>";
         //echo '<script>displayError();</script>';
         }
    }
@@ -66,11 +62,7 @@ if($link === false){
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
-        <script type="text/javascript">
-            function displayError() {
-                alert("Your Email or Password is Invalid");
-            };
-        </script>
+        
     </head>
 
     <body class="no-sidebar">

@@ -5,6 +5,7 @@
 //can I get a username from the session to search the database with?
 session_start();
 if ($_SESSION['loggedIn'] == true) {
+
 //allow
     $link = mysqli_connect("localhost", "root", "", "macnmedb");
 
@@ -15,8 +16,14 @@ if ($_SESSION['loggedIn'] == true) {
     $row = mysqli_fetch_array($result);
 
 }
+
+// if (isset($_POST["logout"])) {
+//     $_SESSION = [];
+//     session_destroy();
+// }
+
 else {
-	header('Location: http://localhost/mac-and-me-master/login.php');
+	header('Location: http://localhost/mac-and-me-master/index.html');
 }
 ?>
     
@@ -107,5 +114,11 @@ else {
     <ul id="hero" style="position: absolute; right: 20px; top: 10px;">
         <li><a href="order-now.php" class="button"><strong>Cart</strong></a></li>
     </ul>
+
+    <form method="post" >
+        <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
+                <li><button type="submit" name="logout" class="button"><strong>Logout</strong></button></li>
+         </ul>
+    </form>
 
     </html>
