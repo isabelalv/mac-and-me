@@ -1,3 +1,4 @@
+<!-- master -->
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
@@ -64,9 +65,17 @@ if(mysqli_query($link, $sql)){
     //header("Location: sign-up.html?wrong=1"); // there was no error
     
     //this redirects to the member homepage
-    echo "<SCRIPT type='text/javascript'>
+    /*echo "<SCRIPT type='text/javascript'>
             window.location='member.php';
         </script>";
+        */
+    session_start();
+
+    $_SESSION['username'] = $Email;
+    $_SESSION['password'] = $Password;
+    $_SESSION['loggedIn'] = true; 
+    //this redirects to the member homepage
+    header("location: http://localhost/mac-and-me-master/member.php");    
 
     } else{
         

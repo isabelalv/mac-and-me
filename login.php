@@ -1,29 +1,33 @@
 <?php
+
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
+
 $link = mysqli_connect("localhost", "root", "", "macnmedb");
- 
+
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-
-session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    if (isset($_POST['submit'])) {
+   //if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
-      
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT id FROM macnmedb WHERE Email = '$myusername' and Password = 'MD5('$mypassword')'";
-      $result = mysqli_query($db,$sql);
+      $myusername = mysqli_real_escape_string($link,$_POST['username']);
+      $mypassword = mysqli_real_escape_string($link,$_POST['password']); 
+      $myhash = MD5($mypassword);
+
+      $sql = "SELECT Email FROM currentUsers WHERE Email = '".$myusername."' and Password = '".$myhash."'";
+
+
+      $result = mysqli_query($link,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
       
       $count = mysqli_num_rows($result);
-      
+
+    session_start();
       // If result matched $myusername and $mypassword, table row must be 1 row
-		
+        
       if($count == 1) {
           //here we start the session
           //this is your thing, Angela, I dont know how you're doing it
@@ -31,15 +35,22 @@ session_start();
 //         session_register("myusername");
 //         $_SESSION['login_user'] = $myusername;
          
-          //this redirects to the member homepage
-         header("location: member.php");
-      }else {
-          
-         //$error = "Your Login Name or Password is invalid";
-          echo "";
-      }
+        $_SESSION['username'] = $myusername;
+        $_SESSION['password'] = $mypassword;
+        $_SESSION['loggedIn'] = true; 
+        echo $_SESSION['loggedIn'];
+            //this redirects to the member homepage
+        header("location: http://localhost/mac-and-me-master/member.php");
+    }
+    else {
+        echo "hi";
+        echo '<script type="text/javascript">',
+                'displayError();',
+                '</script>'
+                ;
+        //echo '<script>displayError();</script>';
+        }
    }
-
 ?>
 
 
@@ -55,11 +66,10 @@ session_start();
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
-        <script>
+        <script type="text/javascript">
             function displayError() {
                 alert("Your Email or Password is Invalid");
-            }
-
+            };
         </script>
     </head>
 
@@ -86,11 +96,6 @@ session_start();
                 </div>
             </div>
 
-            <div style="font-size:11px; color:#cc0000; margin-top:10px">
-                <?php echo $error; ?>
-            </div>
-
-
             <div id="footer-wrapper">
                 <div id="footer" class="container">
                     <div class="log-form" style="text-align: center; width:30%;margin-left:auto;margin-right:auto;">
@@ -100,7 +105,7 @@ session_start();
                             <input name="username" type="text" title="username" placeholder="username" />
                             <input name="password" type="text" title="password" placeholder="password" />
                             <p></p>
-                            <button type="submit" class="btn">Login</button>
+                            <button name="submit" type="submit" class="btn">Login</button>
                         </form>
                     </div>
                     <!--end log form -->

@@ -1,10 +1,4 @@
 <!DOCTYPE HTML>
-<?php
-    if(isset($_POST["logout"])) {
-        $_SESSION = [];
-        session_destroy();
-    }
-?>
 <html>
 
 <head>
@@ -94,9 +88,9 @@
 
         </div>
     </div>
-<form method="post" >
+    <form method="post" action="order-now.php">
                 <ul id="hero" style="position: absolute; left: 20px; top: 10px;"> 
-                    <li><button type="submit" name="logout" class="button"><strong>Logout</strong></button></li>
+                    <li><a href="#" class="button"><strong>Logout</strong></a></li>
                 </ul>
             </form>
 
